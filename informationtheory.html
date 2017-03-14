@@ -1,239 +1,126 @@
-<!DOCTYPE html >
-<html lang="en">
+<html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-<meta charset="utf-8" />
+
+
+
+
+
+<style type="text/css">
+
+    a{text-decoration:none}
+<!--
+BODY
+   {
+   padding-left: 20px;
+   padding-right: 20px;
+ 
+   }
+-->
+
+<!--
+.indented
+   {
+   padding-left: 15pt;
+   padding-right: 15pt;
+   }
+-->
+
+<!--
+.doubleindented
+   {
+   padding-left: 30pt;
+   padding-right: 30pt;
+   }
+-->
+
+<!--
+.tripleindented
+   {
+   padding-left: 45pt;
+   padding-right: 45pt;
+   }
+-->
+
+<!--
+.halfspace
+   {
+   margin-top: 3pt; margin-bottom: 3pt;
+   }
+-->
+
+
+
+h3 { margin-top: 8pt; margin-bottom: 8pt; padding-left: 15pt;}
+h4 { margin-top: 8pt; margin-bottom: 8pt; padding-left: 30pt;}
+p { margin-top: 8pt; margin-bottom: 8pt; }
+  
+
+</style>
+<title>Tutorial:  An Information Theoretical View of InformationElicitation Mechanisms</title>
 </head>
+<body>
 
-<body style="margin: 0;">
+<!--<img src="xiaowanzi.jpg" align="right" WIDTH=300 HEIGHT=330>--> 
+<center>
+</center><center>
+<h1>Tutorial:  An Information Theoretical View of InformationElicitation Mechanisms</h1><p></center>
 
-<div id="p1" style="overflow: hidden; position: relative; width: 935px; height: 1210px;">
+<P CLASS="indented">&nbsp;</P>
+<P CLASS="indented">
+Peer prediction (PP) and prediction markets (PM) are two popular and important information aggregation tools. 
+This tutorial will employ information theory to provide an information theoretical understanding for both PP and PM, including recasting several important prior results into this information theory framework. 
+This new approach promises to provide a systematic theoretical understanding for both PP and PM, and we believe the entire EC community could benefit from better understanding these information theory tools. 
+This talk will first review four important facts of Shannon information theory---(1) entropy monotonicity (2) chain rule (3) sub(super)-additivity (4) information monotonicity/data processing inequality---which are all closely related to PP and PM (and proper scoring rules, which are a key tool in both of these settings). 
+For peer prediction, this talk will recast two important works in the PP literature---(1) <a href="http://economics.mit.edu/files/1966">Bayesian Truth Serum</a> and (2) <a href="https://arxiv.org/abs/1303.0799">Dasgupta and Ghosh [2013]</a>---into the information theoretical framework and introduce our several new PP mechanisms which are designed with the help of the information monotonicity tool. 
+For prediction market, this talk will recast <a href="http://ieee-focs.org/FOCS-2016-Papers/3933a239.pdf">Chen and Waggoner [2016]</a> and <a href="http://www.scottaaronson.com/papers/agreestoc.pdf">Aaronson [2005]</a> into the information theoretical framework and will generalize the classical Shannon information theory concepts to provide a systematic information theoretical understanding for the prediction markets.    
+<P CLASS="indented">
+ 
 
-<!-- Begin shared CSS values -->
-<style type="text/css" >
-.t {
-	-webkit-transform-origin: top left;
-	-moz-transform-origin: top left;
-	-o-transform-origin: top left;
-	-ms-transform-origin: top left;
-	-webkit-transform: scale(0.25);
-	-moz-transform: scale(0.25);
-	-o-transform: scale(0.25);
-	-ms-transform: scale(0.25);
-	z-index: 2;
-	position: absolute;
-	white-space: pre;
-	overflow: visible;
-}
-</style>
-<!-- End shared CSS values -->
+ <img src="im.png" align="right" WIDTH=472 HEIGHT=299>
 
 
-<!-- Begin inline CSS -->
-<style type="text/css" >
-
-#t1_1{left:161px;top:167px;letter-spacing:-0.2px;word-spacing:7.8px;}
-#t2_1{left:345px;top:201px;letter-spacing:-0.1px;word-spacing:5.5px;}
-#t3_1{left:297px;top:255px;letter-spacing:-0.7px;word-spacing:6.6px;}
-#t4_1{left:260px;top:276px;letter-spacing:-0.3px;word-spacing:6px;}
-#t5_1{left:511px;top:255px;letter-spacing:-0.1px;word-spacing:5.9px;}
-#t6_1{left:498px;top:276px;letter-spacing:-0.3px;word-spacing:5.9px;}
-#t7_1{left:136px;top:342px;letter-spacing:-0.1px;word-spacing:4.1px;}
-#t8_1{left:110px;top:362px;word-spacing:5.4px;}
-#t9_1{left:110px;top:383px;word-spacing:10px;}
-#ta_1{left:110px;top:404px;letter-spacing:-0.1px;word-spacing:1.5px;}
-#tb_1{left:110px;top:424px;word-spacing:7.4px;}
-#tc_1{left:110px;top:445px;letter-spacing:0.1px;word-spacing:5.4px;}
-#td_1{left:110px;top:489px;word-spacing:11.5px;}
-#te_1{left:294px;top:489px;word-spacing:8px;}
-#tf_1{left:110px;top:510px;letter-spacing:-0.1px;word-spacing:6.9px;}
-#tg_1{left:110px;top:531px;word-spacing:4.7px;}
-#th_1{left:110px;top:551px;word-spacing:5.6px;}
-#ti_1{left:110px;top:595px;letter-spacing:-0.2px;word-spacing:16.1px;}
-#tj_1{left:258px;top:595px;letter-spacing:-0.1px;word-spacing:11.5px;}
-#tk_1{left:110px;top:616px;letter-spacing:-0.1px;word-spacing:15.2px;}
-#tl_1{left:311px;top:616px;letter-spacing:-0.1px;word-spacing:15.3px;}
-#tm_1{left:473px;top:616px;letter-spacing:-0.2px;word-spacing:15.3px;}
-#tn_1{left:110px;top:637px;letter-spacing:-0.1px;word-spacing:13.5px;}
-#to_1{left:110px;top:657px;letter-spacing:-0.1px;word-spacing:3.1px;}
-#tp_1{left:110px;top:678px;letter-spacing:-0.1px;word-spacing:3.2px;}
-#tq_1{left:110px;top:699px;letter-spacing:-0.1px;word-spacing:1.4px;}
-#tr_1{left:110px;top:720px;letter-spacing:-0.2px;word-spacing:7.3px;}
-#ts_1{left:110px;top:740px;letter-spacing:-0.1px;word-spacing:2.7px;}
-#tt_1{left:110px;top:761px;word-spacing:6.5px;}
-#tu_1{left:110px;top:782px;word-spacing:7.7px;}
-#tv_1{left:356px;top:782px;word-spacing:9.1px;}
-#tw_1{left:551px;top:782px;word-spacing:10.1px;}
-#tx_1{left:110px;top:802px;letter-spacing:-0.1px;word-spacing:6px;}
-#ty_1{left:110px;top:823px;}
-#tz_1{left:139px;top:823px;word-spacing:7.2px;}
-#t10_1{left:327px;top:823px;letter-spacing:0.5px;}
-#t11_1{left:110px;top:867px;letter-spacing:-0.1px;word-spacing:8.4px;}
-#t12_1{left:279px;top:867px;word-spacing:5.2px;}
-#t13_1{left:110px;top:888px;word-spacing:11.1px;}
-#t14_1{left:653px;top:888px;letter-spacing:-0.6px;word-spacing:12.5px;}
-#t15_1{left:110px;top:908px;letter-spacing:-0.1px;word-spacing:12px;}
-#t16_1{left:110px;top:929px;word-spacing:11.1px;}
-#t17_1{left:745px;top:929px;letter-spacing:-0.2px;word-spacing:11.2px;}
-#t18_1{left:110px;top:950px;letter-spacing:-0.1px;word-spacing:12.4px;}
-#t19_1{left:709px;top:950px;word-spacing:12.4px;}
-#t1a_1{left:110px;top:971px;word-spacing:10.5px;}
-#t1b_1{left:110px;top:991px;letter-spacing:-0.2px;word-spacing:-0.7px;}
-#t1c_1{left:110px;top:1012px;word-spacing:0.3px;}
-#t1d_1{left:110px;top:1033px;word-spacing:7px;}
-#t1e_1{left:110px;top:1053px;letter-spacing:-0.1px;word-spacing:8.2px;}
-#t1f_1{left:110px;top:1074px;word-spacing:11.3px;}
-#t1g_1{left:463px;top:1129px;}
-
-.s1_1{
-	FONT-SIZE: 105.2px;
-	FONT-FAMILY: CMR17_4;
-	color: rgb(0,0,0);
-}
-
-.s2_1{
-	FONT-SIZE: 73.1px;
-	FONT-FAMILY: CMR12_5;
-	color: rgb(0,0,0);
-}
-
-.s3_1{
-	FONT-SIZE: 66.7px;
-	FONT-FAMILY: CMR10_6;
-	color: rgb(0,0,0);
-}
-
-.s4_1{
-	FONT-SIZE: 66.7px;
-	FONT-FAMILY: CMBX10_7;
-	color: rgb(0,0,0);
-}
-
-.s5_1{
-	FONT-SIZE: 66.7px;
-	FONT-FAMILY: CMTI10_8;
-	color: rgb(0,0,0);
-}
-
-</style>
-<!-- End inline CSS -->
-
-<!-- Begin embedded font definitions -->
-<style id="fonts1" type="text/css" >
-
-@font-face {
-	font-family: CMR17_4;
-	src: url("fonts/CMR17_4.woff") format("woff");
-}
-
-@font-face {
-	font-family: CMTI10_8;
-	src: url("fonts/CMTI10_8.woff") format("woff");
-}
-
-@font-face {
-	font-family: CMBX10_7;
-	src: url("fonts/CMBX10_7.woff") format("woff");
-}
-
-@font-face {
-	font-family: CMR12_5;
-	src: url("fonts/CMR12_5.woff") format("woff");
-}
-
-@font-face {
-	font-family: CMR10_6;
-	src: url("fonts/CMR10_6.woff") format("woff");
-}
-
-</style>
-<!-- End embedded font definitions -->
-
-<!-- Begin page background -->
-<div id="pg1Overlay" style="width:100%; height:100%; position:absolute; z-index:1; background-color:rgba(0,0,0,0); -webkit-user-select: none;"></div>
-<div id="pg1" style="-webkit-user-select: none;"><object width="935" height="1210" data="1/1.svg" type="image/svg+xml" id="pdf1" style="width:935px; height:1210px; background-color:white; -moz-transform:scale(1); z-index: 0;"></object></div>
-<!-- End page background -->
 
 
-<!-- Begin text definitions (Positioned/styled in CSS) -->
-<div id="t1_1" class="t s1_1">Tutorial: An Information Theoretical View of Information</div>
-<div id="t2_1" class="t s1_1">Elicitation Mechanisms</div>
-<div id="t3_1" class="t s2_1">Yuqing Kong</div>
-<div id="t4_1" class="t s2_1">University of Michigan</div>
-<div id="t5_1" class="t s2_1">Grant Schoenebeck</div>
-<div id="t6_1" class="t s2_1">University of Michigan</div>
-<div id="t7_1" class="t s3_1">Peer prediction (PP) and prediction markets (PM) are two popular and important information</div>
-<div id="t8_1" class="t s3_1">aggregation tools. This tutorial will employ information theory to provide an information theoret-</div>
-<div id="t9_1" class="t s3_1">ical understanding for both PP and PM, including recasting several important prior results into</div>
-<div id="ta_1" class="t s3_1">this information theory framework. This new approach promises to provide a systematic theoretical</div>
-<div id="tb_1" class="t s3_1">understanding for both PP and PM, and we believe the entire EC community could beneﬁt from</div>
-<div id="tc_1" class="t s3_1">better understanding these information theory tools.</div>
-<div id="td_1" class="t s4_1">Information Theory</div>
-<div id="te_1" class="t s3_1">In the tutorial, we will review four important facts of Shannon informa-</div>
-<div id="tf_1" class="t s3_1">tion theory [7]—(1) entropy monotonicity (2) chain rule (3) sub(super)-additivity (4) information</div>
-<div id="tg_1" class="t s3_1">monotonicity/data processing inequality—which are all closely related to PP and PM (and proper</div>
-<div id="th_1" class="t s3_1">scoring rules, which are a key tool in both of these settings).</div>
-<div id="ti_1" class="t s4_1">Peer prediction</div>
-<div id="tj_1" class="t s3_1">Peer prediction mechanisms help elicit information which cannot (or cannot</div>
-<div id="tk_1" class="t s3_1">cheaply) be veriﬁed (e.g.</div>
-<div id="tl_1" class="t s3_1">restaurant reviews).</div>
-<div id="tm_1" class="t s3_1">Peer prediction mechanisms are more powerful</div>
-<div id="tn_1" class="t s3_1">than a simple majority vote, and can motivate agents who believe they are in the minority to</div>
-<div id="to_1" class="t s3_1">report truthfully. Since Miller et al. [16] introduced the original peer prediction mechanism, several</div>
-<div id="tp_1" class="t s3_1">works follow the peer prediction framework and design information elicitation mechanisms without</div>
-<div id="tq_1" class="t s3_1">veriﬁcation in diﬀerent settings. The tutorial will recast two important works in the PP literature—</div>
-<div id="tr_1" class="t s3_1">(1) Bayesian Truth Serum [18] and (2) Dasgupta and Ghosh [8]—into the information theoretical</div>
-<div id="ts_1" class="t s3_1">framework. In the mechanisms designed in these two works, truth-telling is not only an equilibrium</div>
-<div id="tt_1" class="t s3_1">but also the best equilibrium. This tutorial shows that this “truth-telling is the best equilibrium”</div>
-<div id="tu_1" class="t s3_1">property is closely related to the</div>
-<div id="tv_1" class="t s5_1">information monotonicity</div>
-<div id="tw_1" class="t s3_1">tool. Moreover, this tutorial will also</div>
-<div id="tx_1" class="t s3_1">introduce the authors’ several new PP mechanisms ( [14, 15]) which are designed with the help of</div>
-<div id="ty_1" class="t s3_1">the</div>
-<div id="tz_1" class="t s5_1">information monotoncity</div>
-<div id="t10_1" class="t s3_1">tool.</div>
-<div id="t11_1" class="t s4_1">Prediction market</div>
-<div id="t12_1" class="t s3_1">Although prediction markets are a quite strong information elicitation tool</div>
-<div id="t13_1" class="t s3_1">in real life, large holes still remain in the theory of prediction markets.</div>
-<div id="t14_1" class="t s3_1">For example, two basic</div>
-<div id="t15_1" class="t s3_1">questions—(1) how agents should reveal their information to maximize their payment (2) when</div>
-<div id="t16_1" class="t s3_1">does the market accurately aggregate information—have not been fully understood.</div>
-<div id="t17_1" class="t s3_1">Prior work</div>
-<div id="t18_1" class="t s3_1">[5, 6, 4, 12, 13, 19, 9, 10, 3, 1, 2, 11, 17] have provided important progresses.</div>
-<div id="t19_1" class="t s3_1">Hanson [12, 13]</div>
-<div id="t1a_1" class="t s3_1">proposes the market scoring rule (MSR) model which is used broadly in the theoretical work of</div>
-<div id="t1b_1" class="t s3_1">prediction market. For the information revelation problem, Chen et al. [5, 6], Chen and Waggoner [4]</div>
-<div id="t1c_1" class="t s3_1">propose and study a three stages game called the Alice Bob Alice (A-B-A) game—Alice participates</div>
-<div id="t1d_1" class="t s3_1">in the market ﬁrst, then Bob joins, and then Alice has an opportunity to participate again. They</div>
-<div id="t1e_1" class="t s3_1">also deﬁne two special information structures—“substitutes” and “compliments”—and show that</div>
-<div id="t1f_1" class="t s3_1">when traders’ information are substitutes (compliments), Alice should reveal her information as</div>
-<div id="t1g_1" class="t s3_1">1</div>
 
-<!-- End text definitions -->
+<h2>Proposal:</h2>  
+<P CLASS="indented">
+<a href="FILE.pdf">Click here for the pdf file of the proposal.</a>
+<P CLASS="indented">
 
-<!--[if lt IE 9]><script type="text/javascript">
-(function(divCount, pageNum) {
-for (var i = 1; i < divCount; i++) {
-    var div = document.getElementById('t' + i.toString(36) + '_' + pageNum);
-    if (div !== null) {
-        div.style.top = (div.offsetTop * 4) + 'px';
-        div.style.left = (div.offsetLeft * 4) + 'px';
-        div.style.zoom = '25%';
-    }
-}
-})(53, 1);
-</script><![endif]-->
 
-</div>
+
+
+
+
+
+<!--<h2>Teaching:</h2>
+<P CLASS="indented">This semester I am teaching a graduate topics course <a href="teaching/CSE598-06Fall2012.html">Social Networks:  Reasoning about Structure and Processes</a>  
+This class will look at social networks research and how a theoretical computer science prospective both asks new questions and gains additional insights to this 
+growing body of research.  This will be a fun, semenar style course designed to get participants up to the research frontiers of social networks.  
+It is a graduate course, but anyone with interest and sufficient mathematical maturity is encouraged to enroll.</P>-->
+    
+
+
+<!-- <p>  <h3>Other Links:</h3> <a href="complexity.html">Complexity Theory Reading Group</a> -->
+
+
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1889627-1");
+pageTracker._trackPageview();
+</script>
+
 </body>
+
+
+
+
+
+
+
 </html>
-
-
-
-
-
-
-
-
-
-
